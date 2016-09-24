@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - node
+  - "6"
+  - "5"
+  - "4"
+addons:
+  code_climate:
+    repo_token: 79816a32349b15a909e262a88676bf1d51021ad6848b96706411bb2b829dd5b6
+script:
+  - npm run build
+  - npm run coverage
+after_script:
+  - codeclimate-test-reporter < coverage/lcov.info
+deploy:
+  provider: npm
+  email: hello@stephenzuniga.com
+  api_key:
+    secure: CfVAXnQmh7VZzzsezz3OINHC+qfMhHENuyOVWcwqZXuswl6U2U16xYcpls/GmX+9OxPgGGa5JSHYvkdYejWsVxsvU0K89sQLLTm3+FpFYxvMKhaw8Ak481UwLCRq5JlHG7r1EK4chNSKFLpYaBCGPLKHg24TC/3qUYSUx+2rwwyUytuZ15Sxd8/LK2NKdzQLVFlQnhCkZikZtyUIPcRfBNRWb0byrJEYCYUZcJqKb34UTAS4Uymwj9Vno09YBF3j3p43xd5Tsi23aiqNecmO5zpmqC3ONAXCIyin2hXTAbZ3vmAn+6XyZms2Z7end5mpRk88XaLteCzOQOU9uFJRmqult56uHxpQo8XAmsmTIFYZMaeavXT2F2H3fVyfSxNreoZvlajNEUFqE8G2icA3t0oLkUCiUVzcXy2Ow7ArHQcyMfOT94/4hsEWLrG7R3nxojXfqkTbr16uewmP+S9gMnnoaRSfagheiKMypqYatPB8ZkNblMOPbG4epN+H+hbhkWGl39+cf7TanbgeFbmRs0WE/YxU8NaQVYE3SbqEot9gXIbdrinclk9hFdA5b1/pduCIbpPWreqaZkvjmtNi0M/XTER7n5FFX8JjTIKZK9CDYevPRjVLcbS9v7UkysvqMBu1XSX2iH3wJBGJBNZ0Rdu2A1M8HdoZh+ACHIFVdoQ=
+  on:
+    tags: true
+    repo: stezu/http-error
