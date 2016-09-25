@@ -1,5 +1,5 @@
 {
-  "name": "http-error",
+  "name": "express-http-error",
   "version": "0.1.0",
   "description": "Opinionated RESTful error handling for express.",
   "main": "lib/index.js",
@@ -11,12 +11,12 @@
   "author": "Stephen Zuniga",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stezu/http-error/issues"
+    "url": "https://github.com/stezu/express-http-error/issues"
   },
-  "homepage": "https://github.com/stezu/http-error#readme",
+  "homepage": "https://github.com/stezu/express-http-error#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stezu/http-error.git"
+    "url": "git+https://github.com/stezu/express-http-error.git"
   },
   "keywords": [
     "rest",
