@@ -6,6 +6,16 @@ const MockRes = require('mock-express-response');
 const HTTPError = require('../lib/HTTPError.js');
 const errorHandler = require('../lib/errorHandler.js');
 
+MockRes.prototype._getString = function () {
+  const buf = this._readableState.buffer;
+  if (buf instanceof Array) {
+    return Buffer.concat(buf).toString();
+  }
+
+  console.log(buf);
+  return buf.toString();
+};
+
 function noop() {} // eslint-disable-line no-empty-function
 
 describe('[errorHandler]', () => {
