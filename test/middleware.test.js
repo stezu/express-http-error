@@ -6,14 +6,15 @@ const MockRes = require('mock-express-response');
 const HTTPError = require('../lib/HTTPError.js');
 const errorHandler = require('../lib/errorHandler.js');
 
-MockRes.prototype._getString = function () {
-  const buf = this._readableState.buffer;
+MockRes.prototype._getString = function () { // eslint-disable-line no-underscore-dangle
+  const buf = this._readableState.buffer; // eslint-disable-line no-underscore-dangle
+
   if (buf instanceof Array) {
     return Buffer.concat(buf).toString();
   }
 
-  console.log(buf);
-  return buf.toString();
+  // the addition of BufferList makes this necessary
+  return buf.join('');
 };
 
 function noop() {} // eslint-disable-line no-empty-function
