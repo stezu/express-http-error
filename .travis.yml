@@ -4,7 +4,7 @@ node_js:
   - "6"
 addons:
   code_climate:
-    repo_token: 79816a32349b15a909e262a88676bf1d51021ad6848b96706411bb2b829dd5b6
+    repo_token: aba04c40ded00210c69df631cea2f7332c46d6dad0853cb00c8c20053394c9a2
 script:
   - npm run build
   - npm run coverage
