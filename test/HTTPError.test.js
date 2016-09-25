@@ -22,7 +22,10 @@ describe('[HTTPError]', () => {
       'forbidden',
       'notFound',
       'internalError',
-      'notImplemented'
+      'notImplemented',
+      'missingHeader',
+      'invalidHeader',
+      'invalidJson'
     ];
 
     expect(properties).to.deep.equal([
@@ -193,6 +196,79 @@ describe('[HTTPError]', () => {
         statusCode: 501,
         errorCode: 'not_implemented',
         errorMessage: 'The requested resource has not been implemented.'
+      });
+    });
+  });
+
+  describe('#missingHeader', () => {
+
+    it('returns a 400 missing_header', () => {
+      const error = HTTPError.missingHeader();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'missing_header',
+        errorMessage: 'The request is missing a required header.'
+      });
+    });
+
+    it('appends an errorDetails object if specified', () => {
+      const errorDetails = {
+        key: 'content-type'
+      };
+      const error = HTTPError.missingHeader(errorDetails);
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'missing_header',
+        errorMessage: 'The request is missing a required header.',
+        errorDetails
+      });
+    });
+  });
+
+  describe('#invalidHeader', () => {
+
+    it('returns a 400 invalid_header', () => {
+      const error = HTTPError.invalidHeader();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_header',
+        errorMessage: 'The request specified an invalid header.'
+      });
+    });
+
+    it('appends an errorDetails object if specified', () => {
+      const errorDetails = {
+        key: 'content-type',
+        value: 'application/json'
+      };
+      const error = HTTPError.invalidHeader(errorDetails);
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_header',
+        errorMessage: 'The request specified an invalid header.',
+        errorDetails
+      });
+    });
+  });
+
+  describe('#invalidJson', () => {
+
+    it('returns a 400 invalid_json', () => {
+      const error = HTTPError.invalidJson();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_json',
+        errorMessage: 'The request body does not contain valid JSON.'
       });
     });
   });
