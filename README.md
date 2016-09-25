@@ -2,14 +2,14 @@
 
 [![Build Status][1]][2] [![Code Climate][3]][4] [![Test Coverage][5]][6]
 
-[1]: https://travis-ci.org/stezu/http-error.svg?branch=master
-[2]: https://travis-ci.org/stezu/http-error
+[1]: https://travis-ci.org/stezu/express-http-error.svg?branch=master
+[2]: https://travis-ci.org/stezu/express-http-error
 
-[3]: https://codeclimate.com/github/stezu/http-error/badges/gpa.svg
-[4]: https://codeclimate.com/github/stezu/http-error
+[3]: https://codeclimate.com/github/stezu/express-http-error/badges/gpa.svg
+[4]: https://codeclimate.com/github/stezu/express-http-error
 
-[5]: https://codeclimate.com/github/stezu/http-error/badges/coverage.svg
-[6]: https://codeclimate.com/github/stezu/http-error/coverage
+[5]: https://codeclimate.com/github/stezu/express-http-error/badges/coverage.svg
+[6]: https://codeclimate.com/github/stezu/express-http-error/coverage
 
 An opinionated RESTful HTTP error handler intended for use in [Express](http://npmjs.com/package/express).
 
