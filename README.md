@@ -1,4 +1,4 @@
-# WIP: HTTP-Error
+# WIP: Express HTTP Error
 
 [![Build Status][1]][2] [![Code Climate][3]][4] [![Test Coverage][5]][6]
 
