@@ -1,3 +1,4 @@
+const sinon = require('sinon');
 const expect = require('chai').expect;
 
 const MockReq = require('mock-express-request');
@@ -85,5 +86,34 @@ describe('[errorHandler]', () => {
       errorCode: 'internal_error',
       errorMessage: 'An unknown server error occurred.'
     });
+  });
+
+  it('logs the original error if it can', () => {
+    const err = new Error('the original error');
+    const req = new MockReq({
+      log: {
+        warn: sinon.spy()
+      }
+    });
+    const res = new MockRes({
+      request: req
+    });
+
+    errorHandler(err, req, res, noop);
+
+    expect(res.getHeader('content-type')).to.equal('application/json');
+    expect(res.statusCode).to.equal(500);
+    expect(res.statusMessage).to.equal('internal_error');
+
+    expect(res._getJSON()).to.deep.equal({ // eslint-disable-line no-underscore-dangle
+      errorCode: 'internal_error',
+      errorMessage: 'An unknown server error occurred.'
+    });
+
+    expect(req.log.warn.callCount).to.equal(1);
+    expect(req.log.warn.firstCall.args).to.have.lengthOf(2);
+    expect(req.log.warn.firstCall.args[0]).to.have.all.keys('err');
+    expect(req.log.warn.firstCall.args[0].err).to.equal(err);
+    expect(req.log.warn.firstCall.args[1]).to.equal('express-http-error: an error was sent to the client');
   });
 });
