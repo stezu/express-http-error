@@ -25,14 +25,16 @@ describe('[HTTPError]', () => {
       'notImplemented',
       'missingHeader',
       'invalidHeader',
+      'missingInput',
+      'invalidInput',
       'invalidJson'
     ];
 
-    expect(properties).to.deep.equal([
+    expect(properties.sort()).to.deep.equal([
       'length',
       'name',
       'prototype'
-    ].concat(publicMethods));
+    ].concat(publicMethods).sort());
 
     publicMethods.forEach((method) => {
       expect(HTTPError[method]).to.be.a('function');
@@ -254,6 +256,65 @@ describe('[HTTPError]', () => {
         statusCode: 400,
         errorCode: 'invalid_header',
         errorMessage: 'The request specified an invalid header.',
+        errorDetails
+      });
+    });
+  });
+
+  describe('#missingInput', () => {
+
+    it('returns a 400 missing_input', () => {
+      const error = HTTPError.missingInput();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'missing_input',
+        errorMessage: 'The request is missing a required input.'
+      });
+    });
+
+    it('appends an errorDetails object if specified', () => {
+      const errorDetails = {
+        key: 'content-type'
+      };
+      const error = HTTPError.missingInput(errorDetails);
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'missing_input',
+        errorMessage: 'The request is missing a required input.',
+        errorDetails
+      });
+    });
+  });
+
+  describe('#invalidInput', () => {
+
+    it('returns a 400 invalid_input', () => {
+      const error = HTTPError.invalidInput();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_input',
+        errorMessage: 'The request specified an invalid input.'
+      });
+    });
+
+    it('appends an errorDetails object if specified', () => {
+      const errorDetails = {
+        key: 'content-type',
+        value: 'application/json'
+      };
+      const error = HTTPError.invalidInput(errorDetails);
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_input',
+        errorMessage: 'The request specified an invalid input.',
         errorDetails
       });
     });
