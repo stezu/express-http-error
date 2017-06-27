@@ -88,6 +88,36 @@ describe('[errorHandler]', () => {
     });
   });
 
+  it('attaches an errorDetails property to the body if it exists', () => {
+    const err = HTTPError.missingHeader({
+      key: 'content-type',
+      expected: {
+        value: 'application/json'
+      }
+    });
+    const req = new MockReq();
+    const res = new MockRes({
+      request: req
+    });
+
+    errorHandler(err, req, res, noop);
+
+    expect(res.getHeader('content-type')).to.equal('application/json');
+    expect(res.statusCode).to.equal(400);
+    expect(res.statusMessage).to.equal('missing_header');
+
+    expect(res._getJSON()).to.deep.equal({ // eslint-disable-line no-underscore-dangle
+      errorCode: 'missing_header',
+      errorMessage: 'The request is missing a required header.',
+      errorDetails: {
+        key: 'content-type',
+        expected: {
+          value: 'application/json'
+        }
+      }
+    });
+  });
+
   it('logs the original error if it can', () => {
     const err = new Error('the original error');
     const req = new MockReq({
