@@ -21,6 +21,7 @@ describe('[HTTPError]', () => {
       'unauthorized',
       'forbidden',
       'notFound',
+      'gone',
       'internalError',
       'notImplemented',
       'missingHeader',
@@ -170,6 +171,20 @@ describe('[HTTPError]', () => {
         statusCode: 404,
         errorCode: 'not_found',
         errorMessage: 'The requested resource does not exist.'
+      });
+    });
+  });
+
+  describe('#gone', () => {
+
+    it('returns a 410 gone', () => {
+      const error = HTTPError.gone();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 410,
+        errorCode: 'gone',
+        errorMessage: 'The requested resource is no longer available.'
       });
     });
   });
