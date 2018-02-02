@@ -4,6 +4,7 @@
   "description": "Opinionated RESTful error handling for express.",
   "main": "lib/index.js",
   "scripts": {
+    "lint": "gulp lint",
     "test": "gulp test",
     "coverage": "gulp coverage",
     "build": "gulp"

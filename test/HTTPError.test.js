@@ -26,9 +26,10 @@ describe('[HTTPError]', () => {
       'notImplemented',
       'missingHeader',
       'invalidHeader',
+      'invalidJson',
+      'missingBody',
       'missingInput',
-      'invalidInput',
-      'invalidJson'
+      'invalidInput'
     ];
 
     expect(properties.sort()).to.deep.equal([
@@ -276,6 +277,34 @@ describe('[HTTPError]', () => {
     });
   });
 
+  describe('#invalidJson', () => {
+
+    it('returns a 400 invalid_json', () => {
+      const error = HTTPError.invalidJson();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'invalid_json',
+        errorMessage: 'The request body does not contain valid JSON.'
+      });
+    });
+  });
+
+  describe('#missingBody', () => {
+
+    it('returns a 400 missing_body', () => {
+      const error = HTTPError.missingBody();
+
+      validateError(error, {
+        name: 'HTTPError',
+        statusCode: 400,
+        errorCode: 'missing_body',
+        errorMessage: 'The request body is empty.'
+      });
+    });
+  });
+
   describe('#missingInput', () => {
 
     it('returns a 400 missing_input', () => {
@@ -331,20 +360,6 @@ describe('[HTTPError]', () => {
         errorCode: 'invalid_input',
         errorMessage: 'The request specified an invalid input.',
         errorDetails
-      });
-    });
-  });
-
-  describe('#invalidJson', () => {
-
-    it('returns a 400 invalid_json', () => {
-      const error = HTTPError.invalidJson();
-
-      validateError(error, {
-        name: 'HTTPError',
-        statusCode: 400,
-        errorCode: 'invalid_json',
-        errorMessage: 'The request body does not contain valid JSON.'
       });
     });
   });
