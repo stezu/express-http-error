@@ -5,6 +5,7 @@ npm-debug.log*
 
 # Tests/coverage
 coverage
+.nyc_output
 
 # Dependencies
 node_modules

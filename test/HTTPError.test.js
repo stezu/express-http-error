@@ -8,7 +8,7 @@ describe('[HTTPError]', () => {
     expect(error).to.be.an.instanceOf(HTTPError);
     expect(error).to.be.an.instanceOf(Error);
     expect(error).to.not.be.an.instanceOf(RangeError);
-    expect(error).to.deep.equal(body);
+    expect(Object.assign({}, error)).to.deep.equal(body);
     expect(error.message).to.equal(body.errorMessage);
     expect(error.stack).to.be.a('string');
   }
@@ -65,36 +65,30 @@ describe('[HTTPError]', () => {
     const errorCode = 'im_a_teapot';
     const errorMessage = 'Short and Stout.';
 
-    expect(() => {
-      return new HTTPError({
-        errorCode,
-        errorMessage
-      });
-    }).to.throw(Error, /^statusCode is a required property$/);
+    expect(() => new HTTPError({
+      errorCode,
+      errorMessage
+    })).to.throw(Error, /^statusCode is a required property$/);
   });
 
   it('throws an error if "errorCode" is missing', () => {
     const statusCode = 418;
     const errorMessage = 'Short and Stout.';
 
-    expect(() => {
-      return new HTTPError({
-        statusCode,
-        errorMessage
-      });
-    }).to.throw(Error, /^errorCode is a required property$/);
+    expect(() => new HTTPError({
+      statusCode,
+      errorMessage
+    })).to.throw(Error, /^errorCode is a required property$/);
   });
 
   it('throws an error if "errorMessage" is missing', () => {
     const statusCode = 418;
     const errorCode = 'im_a_teapot';
 
-    expect(() => {
-      return new HTTPError({
-        statusCode,
-        errorCode
-      });
-    }).to.throw(Error, /^errorMessage is a required property$/);
+    expect(() => new HTTPError({
+      statusCode,
+      errorCode
+    })).to.throw(Error, /^errorMessage is a required property$/);
   });
 
   describe('#wrap', () => {
