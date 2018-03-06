@@ -17,4 +17,5 @@ deploy:
     secure: EvzHKGNKx3CGTUeAkExo406JCrs+QzeUAyjd5+mH72C8OEbBKUDSfG3BStbnD+zfSGUlE8LwLqyoXzNDj5Jsy5g7lJVaMub22m/7UJh9SY3X9aUSmqMM0kiu8I3Ap+uxU+p8hl9Jc2m5vbu3jHjiE52sVUZ1gVgi6JBMILwHA9HiSa6jIEFWbemlLnRHKOUrO40+2hC9gjFD8zu1n0JiAKuyQ4bBmTe4+6SR5d2pgkyWVicbG9JVqC8pOutNV2dIGXscnv1uJlpE0UB/HERBVu8YCgIgn9vhyAfUnQP2/jq9NCnPJVZwic01oY/kDI4GIfw07+91+9CkUqzlMRfLJqbpCyrBdEL0LJm0vozUyuP5aQTzwoEnzq0GL/4DlqMe1uCNwUrPAi3SM70aj9hmNPxaV9AR/2u3Xt/mbA3hNdSOtha3Q4tltcg3vM2F++MsE2i3jWo3cUP3xWCsYFepWmW08Z5jHvWn6DoeGd/iR8iryKAIOkrI2uZcRp5sRFYuc1sLMetHfv5G3jyjfw+uEzkTRJDmQnoSnsQajKnlVAX2SKKmsfUnEBwG3DXF4eu6ujP5vufZAFtvaP4Hgq8QBq7uPFc0ZYLytqzVYAjMm0MfI0Eg6tY/+2CZzdOeJ/pbnEFd7mJp2vu0myVIVTAO01rStgBHdZ+nYMdNv+ppkpw=
   on:
     tags: true
+    node: "8"
     repo: stezu/express-http-error
